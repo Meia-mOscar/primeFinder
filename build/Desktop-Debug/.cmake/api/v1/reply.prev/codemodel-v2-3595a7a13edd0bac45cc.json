@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-254b39b6a73417834dbb.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "primeFinder",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "primeFinder::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-primeFinder-Debug-885f682f1522ac217164.json",
+					"name" : "primeFinder",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "primeFinder_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-primeFinder_autogen-Debug-ece28e19e49b284c7256.json",
+					"name" : "primeFinder_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "primeFinder_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-primeFinder_autogen_timestamp_deps-Debug-6d78ed8f3d5a4a870fa9.json",
+					"name" : "primeFinder_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/TTB Admin/Documents/Oscar/COS3711_0/primeFinder/build/Desktop-Debug",
+		"source" : "C:/Users/TTB Admin/Documents/Oscar/COS3711_0/primeFinder"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}
