@@ -1,36 +1,31 @@
 #include "primeFinder.h"
 
 PrimeFinder::PrimeFinder() {
-    range = 0;
 }
 
 PrimeFinder::~PrimeFinder() {
 
 }
 
-void PrimeFinder::find() {
+void PrimeFinder::findPrimesInRange(int start, int end) {
     /*
      * Prime is divisible by 1 & itself.
-     * x/x and all numbers up to sqrt(x)
-     * What if x == 2?
-     *
+     * Up to sqrt(x). Thereafter divisor pairs.
+     * Assume prime & evaluate for composite number.
+     * This evaulates only one number, not a range.
      */
-    int count = 0;
 
-    for(int i = 2; i< sqrt(x); i++) {
-        if(x%i == 0) {
-            count++;
+    for(int currentNum=start; currentNum<end; currentNum++) {
+        bool isPrime = true;
+        for(int i = 2; i< std::sqrt(currentNum); i++) {
+            if(currentNum%i == 0) {
+                isPrime = false;
+            }
+            break;
         }
+        if(isPrime) {
+            primesInRange.push_back(currentNum);
+        }
+
     }
-}
-
-void PrimeFinder::split(int bgn, int end, int count) {
-    /*
-     * Div the number set into threads
-     * end-bgn=range
-     * range/count
-     *
-     */
-    range = end-bgn;
-
 }

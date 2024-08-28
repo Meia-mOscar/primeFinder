@@ -2,20 +2,21 @@
 #define PRIMEFINDER_H
 
 #include <QObject>
-#include <thread>
+#include <QDebug>
 
 class PrimeFinder : public QObject {
 public:
-    void find(std::vector<std::thread> t);
-    void split(int bgn, int end, int cout);
-    void get();
-private:
     PrimeFinder();
     ~PrimeFinder();
-    std::vector<std::thread> myThreads;
+    void findPrimesInRange(int start, int end);
+private:
     //Each thread's values must be stored
+    //Rows = myThreads
+    //Cols = primes found in each thread
+    std::vector<int> primesInRange;
+    int start;
+    int end;
     int range;
-    std::vector<int> intervals;
 };
 
 #endif // PRIMEFINDER_H
