@@ -43,6 +43,45 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow() {}
 
-void MainWindow::start() {
+
+void MainWindow::calcRange() {
+    start = startEdit.value();
+    end = endEdit.value();
+    threadCount = threadEdit.value();
+    range = end-start;
+
+    if(range % threadCount == 0) {
+        increment = range/threadCount;
+    } else {
+        increment = (range/threadCount)+1;
+    }
+}
+
+void MainWindow::setFinders() {
+    threadCount = threadEdit.value();
+    for(int i=0; i<threadCount; i++) {
+        PrimeFinder *aPrimeFinder = new PrimeFinder;
+        finders.push_back(aPrimeFinder);
+    }
+}
+
+void MainWindow::findPrimes() {
+    //std::thread thread_obj(foo, params);
+    start = startEdit.value();
+    for(int i=0; i<threadEdit.value(); i++) {
+        int a = start+i*increment;
+        int b = start+(i+1)*increment;
+        threads.push_back(std::thread(&PrimeFinder::findPrimesInRange, finders.at(i), a, b));
+    }
+
+    /**
+     * For each new prime found,
+     * update the table widgets w new row
+     *
+     *
+     */
+}
+
+void MainWindow::refreshThread() {
 
 }

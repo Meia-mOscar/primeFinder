@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "primeFinder.h"
 #include <QMainWindow>
 #include <thread>
 #include <QWidget>
@@ -19,9 +20,18 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 public slots:
-    void start();
+    void findPrimes();
+    void refreshThread();
 private:
+    void setFinders();
+    void calcRange();
+    int start;
+    int end;
+    int threadCount;
+    int range;
+    int increment;
     std::vector<std::thread> threads;
+    std::vector<PrimeFinder*> finders;
     QWidget centralWidget;
     QVBoxLayout mainLayout;
     QHBoxLayout startLayout;
@@ -40,11 +50,9 @@ private:
     QLabel threadOutLable1;
     QLabel threadOutLable2;
     QLabel threadOutLable3;
-
     QSpinBox startEdit;
     QSpinBox endEdit;
     QSpinBox threadEdit;
-
     QPushButton startBtn;
 };
 #endif // MAINWINDOW_H
