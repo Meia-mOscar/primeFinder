@@ -9,6 +9,7 @@ public:
     PrimeFinder();
     ~PrimeFinder();
     void findPrimesInRange(int start, int end);
+    std::vector<int>* getPrimes();
 private:
     //Each thread's values must be stored
     //Rows = myThreads

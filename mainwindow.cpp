@@ -7,10 +7,10 @@ MainWindow::MainWindow(QWidget *parent)
     endLable.setText("End");
     threadInLable.setText("Number of threads");
     startBtn.setText("Start");
-    threadOutLable0.setText("Thread 1");
-    threadOutLable1.setText("Thread 2");
-    threadOutLable2.setText("Thread 3");
-    threadOutLable3.setText("Thread 4");
+    threadOutLable_0.setText("Thread 1");
+    threadOutLable_1.setText("Thread 2");
+    threadOutLable_2.setText("Thread 3");
+    threadOutLable_3.setText("Thread 4");
 
     startLayout.addWidget(&startEdit);
     startLayout.addWidget(&startLable);
@@ -19,18 +19,26 @@ MainWindow::MainWindow(QWidget *parent)
     threadInLayout.addWidget(&threadEdit);
     threadInLayout.addWidget(&threadInLable);
     threadInLayout.addWidget(&startBtn);
-    threadOutSubLayout0.addWidget(&threadOutLable0);
-    //Add table 0
-    threadOutLayout.addLayout(&threadOutSubLayout0);
-    threadOutSubLayout1.addWidget(&threadOutLable1);
-    //Add table 1
-    threadOutLayout.addLayout(&threadOutSubLayout1);
-    threadOutLayout.addWidget(&threadOutLable2);
-    //Add table 2
-    threadOutLayout.addLayout(&threadOutSubLayout2);
-    threadOutLayout.addWidget(&threadOutLable3);
-    //Add table 3
-    threadOutLayout.addLayout(&threadOutSubLayout3);
+
+    threadOutSubLayout_0.addWidget(&threadOutLable_0);
+    tableView_0.setModel(&table_0);
+    threadOutSubLayout_0.addWidget(&tableView_0);
+    threadOutLayout.addLayout(&threadOutSubLayout_0);
+
+    threadOutSubLayout_1.addWidget(&threadOutLable_1);
+    tableView_1.setModel(&table_1);
+    threadOutSubLayout_1.addWidget(&tableView_1);
+    threadOutLayout.addLayout(&threadOutSubLayout_1);
+
+    threadOutSubLayout_2.addWidget(&threadOutLable_2);
+    tableView_2.setModel(&table_2);
+    threadOutSubLayout_2.addWidget(&tableView_2);
+    threadOutLayout.addLayout(&threadOutSubLayout_2);
+
+    threadOutSubLayout_3.addWidget(&threadOutLable_3);
+    tableView_3.setModel(&table_3);
+    threadOutSubLayout_3.addWidget(&tableView_3);
+    threadOutLayout.addLayout(&threadOutSubLayout_3);
 
     mainLayout.addLayout(&startLayout);
     mainLayout.addLayout(&endLayout);
@@ -78,10 +86,23 @@ void MainWindow::findPrimes() {
      * For each new prime found,
      * update the table widgets w new row
      *
-     *
+     * QStandardItem *albumTitleItem = new QStandardItem;
+     * albumTitleItem->setText(albumTitleInput->text());
+     * table->setItem(rowCount,1,albumTitleItem);
      */
 }
 
-void MainWindow::refreshThread() {
+void MainWindow::refreshThreads(PrimeFinder &primes, std::vector<QStandardItem*> items) {
+    /*
+     * I need 4 tables
+     * Each of ten rows
+     * Then a function has to add
+     *
+    */
 
+    int pSize = primes.getPrimes()->size();
+    for(int i=items.size(); i<pSize; i++) {
+        QStandardItem *itm = new QStandardItem;
+        itm->setText(QString::number(i));
+    }
 }

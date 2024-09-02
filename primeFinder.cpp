@@ -29,3 +29,7 @@ void PrimeFinder::findPrimesInRange(int start, int end) {
 
     }
 }
+
+std::vector<int>* PrimeFinder::getPrimes() {
+    return &primesInRange;
+}
