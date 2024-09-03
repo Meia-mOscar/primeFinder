@@ -3,6 +3,8 @@
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
+    threads.clear();
+
     startLable.setText("Start");
     endLable.setText("End");
     threadInLable.setText("Number of threads");
@@ -16,7 +18,8 @@ MainWindow::MainWindow(QWidget *parent)
     startLayout.addWidget(&startLable);
     endLayout.addWidget(&endEdit);
     endLayout.addWidget(&endLable);
-    threadInLayout.addWidget(&threadEdit);
+    threadEdit->setRange(1,4);
+    threadInLayout.addWidget(threadEdit);
     threadInLayout.addWidget(&threadInLable);
     threadInLayout.addWidget(&startBtn);
 
@@ -47,15 +50,36 @@ MainWindow::MainWindow(QWidget *parent)
 
     centralWidget.setLayout(&mainLayout);
     setCentralWidget(&centralWidget);
+
+    connect(&prime_0, &PrimeFinder::primeFound, this, &MainWindow::addToTable_0);
+    connect(&prime_1, &PrimeFinder::primeFound, this, &MainWindow::addToTable_1);
+    connect(&prime_2, &PrimeFinder::primeFound, this, &MainWindow::addToTable_2);
+    connect(&prime_3, &PrimeFinder::primeFound, this, &MainWindow::addToTable_3);
+    connect(&startBtn, &QPushButton::clicked, this, &MainWindow::startClicked);
 }
 
-MainWindow::~MainWindow() {}
+MainWindow::~MainWindow() {
+    delete threadEdit;
+    for(int i=0; i<items_0.size(); i++) {
+        delete items_0.at(i);
+    }
+    for(int i=0; i<items_1.size(); i++) {
+        delete items_0.at(i);
+    }
+    for(int i=0; i<items_2.size(); i++) {
+        delete items_0.at(i);
+    }
+    for(int i=0; i<items_1.size(); i++) {
+        delete items_0.at(i);
+    }
+}
 
 
-void MainWindow::calcRange() {
+void MainWindow::setRange() {
+    qDebug() << "setRange()";
     start = startEdit.value();
     end = endEdit.value();
-    threadCount = threadEdit.value();
+    threadCount = threadEdit->value();
     range = end-start;
 
     if(range % threadCount == 0) {
@@ -65,44 +89,67 @@ void MainWindow::calcRange() {
     }
 }
 
-void MainWindow::setFinders() {
-    threadCount = threadEdit.value();
-    for(int i=0; i<threadCount; i++) {
-        PrimeFinder *aPrimeFinder = new PrimeFinder;
-        finders.push_back(aPrimeFinder);
-    }
+void MainWindow::setThreads() {
+    qDebug() << "setThreads()";
+    threadCount = threadEdit->value();
+    finders.push_back(&prime_0);
+    finders.push_back(&prime_1);
+    finders.push_back(&prime_2);
+    finders.push_back(&prime_3);
 }
 
-void MainWindow::findPrimes() {
+void MainWindow::findPrime() {
+    qDebug() << "findPrime()";
     //std::thread thread_obj(foo, params);
     start = startEdit.value();
-    for(int i=0; i<threadEdit.value(); i++) {
+    qDebug() << start;
+    qDebug() << threads.size();
+    for(int i=0; i<threadCount; i++) {
         int a = start+i*increment;
-        int b = start+(i+1)*increment;
-        threads.push_back(std::thread(&PrimeFinder::findPrimesInRange, finders.at(i), a, b));
+        int b;
+        if(i == threads.size()-1) {
+            b = end;
+        } else {
+            b = start+(i+1)*increment;
+        }
+        qDebug() << "i: " + QString::number(i);
+        threads.push_back(std::thread(&PrimeFinder::findPrime, finders.at(i), a, b));
     }
-
-    /**
-     * For each new prime found,
-     * update the table widgets w new row
-     *
-     * QStandardItem *albumTitleItem = new QStandardItem;
-     * albumTitleItem->setText(albumTitleInput->text());
-     * table->setItem(rowCount,1,albumTitleItem);
-     */
+    for(auto &t: threads) {
+        t.join();
+    }
 }
 
-void MainWindow::refreshThreads(PrimeFinder &primes, std::vector<QStandardItem*> items) {
-    /*
-     * I need 4 tables
-     * Each of ten rows
-     * Then a function has to add
-     *
-    */
-
-    int pSize = primes.getPrimes()->size();
-    for(int i=items.size(); i<pSize; i++) {
+void MainWindow::refreshTable(PrimeFinder &primeObj, QStandardItemModel &itemModel) {
+    qDebug() << "refreshTable()";
+    int pSize = primeObj.getPrimes()->size();
+    for(int i=itemModel.rowCount(); i<pSize; i++) {
         QStandardItem *itm = new QStandardItem;
         itm->setText(QString::number(i));
+        itemModel.setItem(i, 0, itm);
     }
+}
+
+void MainWindow::addToTable_0() {
+    refreshTable(prime_0, table_0);
+}
+
+void MainWindow::addToTable_1() {
+    refreshTable(prime_1, table_1);
+}
+
+void MainWindow::addToTable_2() {
+    refreshTable(prime_2, table_2);
+}
+
+void MainWindow::addToTable_3() {
+    refreshTable(prime_3, table_3);
+}
+
+void MainWindow::startClicked() {
+    qDebug() << "startClicked()";
+    setRange();
+    setThreads();
+    findPrime();
+    addToTable_0();
 }
