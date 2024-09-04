@@ -21,9 +21,6 @@ private:
     std::vector<int> primesInRange;
     int getNewPrime();
     int newPrime;
-    int start;
-    int end;
-    int range;
     int id;
     static int nxtId;
 signals:

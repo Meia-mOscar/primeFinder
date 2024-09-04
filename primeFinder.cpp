@@ -18,19 +18,20 @@ void PrimeFinder::findPrime(int start, int end) {
      * Assume prime & evaluate for composite number.
      * This evaulates only one number, not a range.
      */
+    primesInRange.clear();
 
-    for(int currentNum=start; currentNum<end; currentNum++) {
+    for(int currentNum=start; currentNum<=end; currentNum++) {
         bool isPrime = true;
-        for(int i = 2; i< std::sqrt(currentNum); i++) {
+        for(int i = 2; i<=std::sqrt(currentNum); i++) {
             if(currentNum%i == 0) {
                 isPrime = false;
             }
-            break;
         }
         if(isPrime) {
-            qDebug() << "PrimeFinder::findPrime() Obj_id(" + QString::number(getId()) + ") strt(" + QString::number(start) + ") - end(" + QString::number(end) + ")";
-            qDebug() << "Prime: " + currentNum;
+            //qDebug() << "Prime::findP() Obj_id(" + QString::number(getId()) + ") strt(" + QString::number(start) + ") - end(" + QString::number(end) + ") isPrime("+QString::number(currentNum)+")";
             addToPrimes(currentNum);
+        } else {
+          //qDebug() << "Prime::findP() Obj_id(" + QString::number(getId()) + ") strt(" + QString::number(start) + ") - end(" + QString::number(end) + ") isNot("+QString::number(currentNum)+")";
         }
 
     }

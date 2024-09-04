@@ -78,7 +78,6 @@ MainWindow::~MainWindow() {
 
 
 void MainWindow::setRange() {
-    qDebug() << "setRange()";
     start = startEdit.value();
     end = endEdit.value();
     threadCount = threadEdit->value();
@@ -92,7 +91,6 @@ void MainWindow::setRange() {
 }
 
 void MainWindow::setThreads() {
-    qDebug() << "setThreads()";
     threadCount = threadEdit->value();
     finders.push_back(&prime_0);
     finders.push_back(&prime_1);
@@ -101,12 +99,11 @@ void MainWindow::setThreads() {
 }
 
 void MainWindow::findPrime() {
-    qDebug() << "findPrime()";
     //std::thread thread_obj(foo, params);
+    threads.clear();
     start = startEdit.value();
-    qDebug() << start;
-    qDebug() << threads.size();
     for(int i=0; i<threadCount; i++) {
+        qDebug() << "Main::findP() Iteration " + QString::number(i);
         int a = start+i*increment;
         int b;
         if(i == threads.size()-1) {
@@ -114,7 +111,6 @@ void MainWindow::findPrime() {
         } else {
             b = start+(i+1)*increment;
         }
-        qDebug() << "i: " + QString::number(i);
         threads.push_back(std::thread(&PrimeFinder::findPrime, finders.at(i), a, b));
     }
     for(auto &t: threads) {
@@ -123,11 +119,12 @@ void MainWindow::findPrime() {
 }
 
 void MainWindow::refreshTable(PrimeFinder &primeObj, QStandardItemModel &itemModel) {
-    qDebug() << "refreshTable() obj_id(" + QString::number(primeObj.getId()) + ")";
     int pSize = primeObj.getPrimes()->size();
+    int prime;
     for(int i=itemModel.rowCount(); i<pSize; i++) {
         QStandardItem *itm = new QStandardItem;
-        itm->setText(QString::number(i));
+        prime = primeObj.getPrimes()->at(i);
+        itm->setText(QString::number(prime));
         itemModel.setItem(i, 0, itm);
     }
 }
@@ -149,9 +146,12 @@ void MainWindow::addToTable_3() {
 }
 
 void MainWindow::startClicked() {
-    qDebug() << "startClicked()";
     setRange();
     setThreads();
     findPrime();
-    addToTable_0(); //Why invoke foo here?
+    addToTable_0();
+    /*
+     * Why invoke addToTable?
+     * Is addToTable not the slot to the signal emitted by every new prime?
+    */
 }
