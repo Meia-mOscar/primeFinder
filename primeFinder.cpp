@@ -12,8 +12,6 @@ PrimeFinder::~PrimeFinder() {
 }
 
 void PrimeFinder::findPrime(int start, int end) {
-    qDebug() << "PrimeFinder::findPrime() Obj_id(" + QString::number(getId()) + ")";
-    qDebug() << "Range: strt(" + QString::number(start) + ") - end(" + QString::number(end) + ")";
     /*
      * Prime is divisible by 1 & itself.
      * Up to sqrt(x). Thereafter divisor pairs.
@@ -30,6 +28,7 @@ void PrimeFinder::findPrime(int start, int end) {
             break;
         }
         if(isPrime) {
+            qDebug() << "PrimeFinder::findPrime() Obj_id(" + QString::number(getId()) + ") strt(" + QString::number(start) + ") - end(" + QString::number(end) + ")";
             qDebug() << "Prime: " + currentNum;
             addToPrimes(currentNum);
         }

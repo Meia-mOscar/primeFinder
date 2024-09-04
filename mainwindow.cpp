@@ -14,8 +14,10 @@ MainWindow::MainWindow(QWidget *parent)
     threadOutLable_2.setText("Thread 3");
     threadOutLable_3.setText("Thread 4");
 
+    startEdit.setRange(1,INT_MAX);
     startLayout.addWidget(&startEdit);
     startLayout.addWidget(&startLable);
+    endEdit.setRange(1,INT_MAX);
     endLayout.addWidget(&endEdit);
     endLayout.addWidget(&endLable);
     threadEdit->setRange(1,4);
@@ -121,7 +123,7 @@ void MainWindow::findPrime() {
 }
 
 void MainWindow::refreshTable(PrimeFinder &primeObj, QStandardItemModel &itemModel) {
-    qDebug() << "refreshTable()";
+    qDebug() << "refreshTable() obj_id(" + QString::number(primeObj.getId()) + ")";
     int pSize = primeObj.getPrimes()->size();
     for(int i=itemModel.rowCount(); i<pSize; i++) {
         QStandardItem *itm = new QStandardItem;
@@ -151,5 +153,5 @@ void MainWindow::startClicked() {
     setRange();
     setThreads();
     findPrime();
-    addToTable_0();
+    addToTable_0(); //Why invoke foo here?
 }
