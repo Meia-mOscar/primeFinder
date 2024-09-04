@@ -1,13 +1,16 @@
 #include "primeFinder.h"
 
 PrimeFinder::PrimeFinder() {
+    primesInRange.clear();
+    newPrime = 0;
 }
 
 PrimeFinder::~PrimeFinder() {
 
 }
 
-void PrimeFinder::findPrimesInRange(int start, int end) {
+void PrimeFinder::findPrime(int start, int end) {
+    qDebug() << "PrimeFinder::findPrime()";
     /*
      * Prime is divisible by 1 & itself.
      * Up to sqrt(x). Thereafter divisor pairs.
@@ -24,8 +27,22 @@ void PrimeFinder::findPrimesInRange(int start, int end) {
             break;
         }
         if(isPrime) {
-            primesInRange.push_back(currentNum);
+            qDebug() << "currentNum(): " + currentNum;
+            addToPrimes(currentNum);
         }
 
     }
+}
+
+void PrimeFinder::addToPrimes(int prime) {
+    primesInRange.push_back(prime);
+    emit primeFound(prime);
+}
+
+std::vector<int>* PrimeFinder::getPrimes() {
+    return &primesInRange;
+}
+
+int PrimeFinder::getNewPrime() {
+    return newPrime;
 }
