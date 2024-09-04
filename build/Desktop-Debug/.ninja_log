@@ -1,0 +1,10 @@
+# ninja log v5
+3	1571	7471327164969094	primeFinder_autogen/timestamp	e104fbc754e178d8
+3	1571	7471327164969094	primeFinder_autogen/mocs_compilation.cpp	e104fbc754e178d8
+3	1571	7471327164969094	C:/Users/TTB Admin/Documents/Oscar/COS3711_0/primeFinder/build/Desktop-Debug/primeFinder_autogen/timestamp	e104fbc754e178d8
+3	1571	7471327164969094	C:/Users/TTB Admin/Documents/Oscar/COS3711_0/primeFinder/build/Desktop-Debug/primeFinder_autogen/mocs_compilation.cpp	e104fbc754e178d8
+1595	5232	7471327203441496	CMakeFiles/primeFinder.dir/primeFinder.cpp.obj	3b722f778fd61d2d
+1585	5684	7471327207970842	CMakeFiles/primeFinder.dir/main.cpp.obj	341d9c687324fcb1
+1574	5829	7471327209412281	CMakeFiles/primeFinder.dir/primeFinder_autogen/mocs_compilation.cpp.obj	289899fd0f975a00
+1605	6043	7471327211503434	CMakeFiles/primeFinder.dir/mainwindow.cpp.obj	dedf58d73f866312
+6044	6557	7471327215754764	primeFinder.exe	4d5f7ef4c1e21334

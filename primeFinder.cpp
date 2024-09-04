@@ -3,6 +3,8 @@
 PrimeFinder::PrimeFinder() {
     primesInRange.clear();
     newPrime = 0;
+    id = nxtId;
+    nxtId++;
 }
 
 PrimeFinder::~PrimeFinder() {
@@ -10,7 +12,8 @@ PrimeFinder::~PrimeFinder() {
 }
 
 void PrimeFinder::findPrime(int start, int end) {
-    qDebug() << "PrimeFinder::findPrime()";
+    qDebug() << "PrimeFinder::findPrime() Obj_id(" + QString::number(getId()) + ")";
+    qDebug() << "Range: strt(" + QString::number(start) + ") - end(" + QString::number(end) + ")";
     /*
      * Prime is divisible by 1 & itself.
      * Up to sqrt(x). Thereafter divisor pairs.
@@ -27,7 +30,7 @@ void PrimeFinder::findPrime(int start, int end) {
             break;
         }
         if(isPrime) {
-            qDebug() << "currentNum(): " + currentNum;
+            qDebug() << "Prime: " + currentNum;
             addToPrimes(currentNum);
         }
 
@@ -46,3 +49,9 @@ std::vector<int>* PrimeFinder::getPrimes() {
 int PrimeFinder::getNewPrime() {
     return newPrime;
 }
+
+int PrimeFinder::getId() {
+    return id;
+}
+
+int PrimeFinder::nxtId = 0;

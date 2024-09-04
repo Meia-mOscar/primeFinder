@@ -18,11 +18,14 @@ public:
 private:
     void addToPrimes(int prime);
     int getNewPrime();
+    int getId();
     std::vector<int> primesInRange;
     int newPrime;
     int start;
     int end;
     int range;
+    int id;
+    static int nxtId;
 signals:
     void primeFound(int newestPrime);
 };
