@@ -25,6 +25,7 @@ void PrimeFinder::findPrime(int start, int end) {
         for(int i = 2; i<=std::sqrt(currentNum); i++) {
             if(currentNum%i == 0) {
                 isPrime = false;
+                break;
             }
         }
         if(isPrime) {
