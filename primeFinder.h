@@ -15,14 +15,14 @@ public:
     ~PrimeFinder();
     void findPrime(int start, int end);
     std::vector<int>* getPrimes();
+    int getId();
 private:
     void addToPrimes(int prime);
-    int getNewPrime();
     std::vector<int> primesInRange;
+    int getNewPrime();
     int newPrime;
-    int start;
-    int end;
-    int range;
+    int id;
+    static int nxtId;
 signals:
     void primeFound(int newestPrime);
 };

@@ -27,7 +27,6 @@ public slots:
     void startClicked();
 private:
     void findPrime();
-    void setThreads();
     void setRange();
     void addToTable_0();
     void addToTable_1();
