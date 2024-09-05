@@ -31,7 +31,8 @@ void PrimeFinder::findPrime(int start, int end) {
             //qDebug() << "Prime::findP() Obj_id(" + QString::number(getId()) + ") strt(" + QString::number(start) + ") - end(" + QString::number(end) + ") isPrime("+QString::number(currentNum)+")";
             addToPrimes(currentNum);
         } else {
-          //qDebug() << "Prime::findP() Obj_id(" + QString::number(getId()) + ") strt(" + QString::number(start) + ") - end(" + QString::number(end) + ") isNot("+QString::number(currentNum)+")";
+
+            //qDebug() << "Prime::findP() Obj_id(" + QString::number(getId()) + ") strt(" + QString::number(start) + ") - end(" + QString::number(end) + ") isNot("+QString::number(currentNum)+")";
         }
 
     }

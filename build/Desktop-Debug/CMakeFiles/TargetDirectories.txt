@@ -1,0 +1,9 @@
+C:/Users/TTB Admin/Documents/Oscar/COS3711_0/primeFinder/build/Desktop-Debug/CMakeFiles/primeFinder.dir
+C:/Users/TTB Admin/Documents/Oscar/COS3711_0/primeFinder/build/Desktop-Debug/CMakeFiles/edit_cache.dir
+C:/Users/TTB Admin/Documents/Oscar/COS3711_0/primeFinder/build/Desktop-Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/TTB Admin/Documents/Oscar/COS3711_0/primeFinder/build/Desktop-Debug/CMakeFiles/list_install_components.dir
+C:/Users/TTB Admin/Documents/Oscar/COS3711_0/primeFinder/build/Desktop-Debug/CMakeFiles/install.dir
+C:/Users/TTB Admin/Documents/Oscar/COS3711_0/primeFinder/build/Desktop-Debug/CMakeFiles/install/local.dir
+C:/Users/TTB Admin/Documents/Oscar/COS3711_0/primeFinder/build/Desktop-Debug/CMakeFiles/install/strip.dir
+C:/Users/TTB Admin/Documents/Oscar/COS3711_0/primeFinder/build/Desktop-Debug/CMakeFiles/primeFinder_autogen_timestamp_deps.dir
+C:/Users/TTB Admin/Documents/Oscar/COS3711_0/primeFinder/build/Desktop-Debug/CMakeFiles/primeFinder_autogen.dir

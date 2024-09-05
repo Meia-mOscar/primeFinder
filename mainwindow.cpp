@@ -103,13 +103,12 @@ void MainWindow::findPrime() {
     threads.clear();
     start = startEdit.value();
     for(int i=0; i<threadCount; i++) {
-        qDebug() << "Main::findP() Iteration " + QString::number(i);
         int a = start+i*increment;
         int b;
-        if(i == threads.size()-1) {
+        if(i == threadCount-1) {
             b = end;
         } else {
-            b = start+(i+1)*increment;
+            b = start+(i+1)*increment-1;
         }
         threads.push_back(std::thread(&PrimeFinder::findPrime, finders.at(i), a, b));
     }
@@ -149,9 +148,4 @@ void MainWindow::startClicked() {
     setRange();
     setThreads();
     findPrime();
-    addToTable_0();
-    /*
-     * Why invoke addToTable?
-     * Is addToTable not the slot to the signal emitted by every new prime?
-    */
 }
