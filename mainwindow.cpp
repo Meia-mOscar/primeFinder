@@ -4,6 +4,10 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
 {
     threads.clear();
+    finders.push_back(&prime_0);
+    finders.push_back(&prime_1);
+    finders.push_back(&prime_2);
+    finders.push_back(&prime_3);
 
     startLable.setText("Start");
     endLable.setText("End");
@@ -62,6 +66,9 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow() {
     delete threadEdit;
+    for(auto &t : finders) {
+        delete t;
+    }
     for(int i=0; i<items_0.size(); i++) {
         delete items_0.at(i);
     }
@@ -90,17 +97,10 @@ void MainWindow::setRange() {
     }
 }
 
-void MainWindow::setThreads() {
-    threadCount = threadEdit->value();
-    finders.push_back(&prime_0);
-    finders.push_back(&prime_1);
-    finders.push_back(&prime_2);
-    finders.push_back(&prime_3);
-}
-
 void MainWindow::findPrime() {
     //std::thread thread_obj(foo, params);
     threads.clear();
+    threadCount = threadEdit->value();
     start = startEdit.value();
     for(int i=0; i<threadCount; i++) {
         int a = start+i*increment;
@@ -146,6 +146,5 @@ void MainWindow::addToTable_3() {
 
 void MainWindow::startClicked() {
     setRange();
-    setThreads();
     findPrime();
 }
